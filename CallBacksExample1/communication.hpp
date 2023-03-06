@@ -5,22 +5,29 @@
 
 #ifndef _FIFO_COMM_CLASS_
 #define _FIFO_COMM_CLASS_
+
 namespace fifocomm{
+
+ constexpr unsigned char num_bytes = 100;
+
 class FifoComm{
 
 	public:
 	
 	FifoComm(const char* fifo_path_name);
+	~FifoComm();
 	void SetOnReceiveCallback(std::function<void()> callback);
-	void FifoStartReceive();
+	void StartReceive();
 	void DataRead();
  			 
     private:
+
 	const char* fifo_path_name_;
 	int fd;
 	std::future<void> rx_trhead_;
-	char data_[100];
+	char data_[num_bytes];
 	std::function<void()> callback_;	
+	bool continue_reading_;
 	
 }; //FifoComm
 } //namespace fifocomm
