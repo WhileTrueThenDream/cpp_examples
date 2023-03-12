@@ -1,7 +1,6 @@
 #include "communication.hpp"
 #include <unistd.h>
 #include <fcntl.h>
-#include <functional>
 
 namespace fifocomm{
     FifoComm::FifoComm(const char* fifo_path_name):fifo_path_name_{fifo_path_name} ,continue_reading_{true}
@@ -15,8 +14,6 @@ namespace fifocomm{
        close(fd);
        remove(fifo_path_name_);
        continue_reading_ = false; //thread must finish so destructor destroys object. 
-
-       printf("Destructor called \n");
     } 
     
     void FifoComm::SetOnReceiveCallback(std::function<void()> callback)
@@ -34,12 +31,15 @@ namespace fifocomm{
     //The callback will be triggered when an 'a' is received. 
     void FifoComm::DataRead()
     {
+        char data[num_bytes];
+
         while(continue_reading_)
         {
-            read(fd,&data_[0], num_bytes); //this operation is blocking 
-            if(data_[0] == 'a')
+            read(fd,&data[0], num_bytes); //this operation is blocking 
+            if(data[0] == 'a')
             {
                 callback_();
+                printf("Event: 'a' received...some action .... \n");
             }                    
         }
     }
