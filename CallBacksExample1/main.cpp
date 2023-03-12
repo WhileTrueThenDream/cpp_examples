@@ -12,7 +12,7 @@
 const char* fifo_path{"/tmp/my_fifo"};
 using namespace fifocomm;
 
-void PrintReceivedData()
+void OnReceivedChar_a()
 {
     printf("Event: 'a' received...some action .... \n");
 }
@@ -20,7 +20,7 @@ void PrintReceivedData()
 int main()
 {
     FifoComm fifo_1(fifo_path);
-    fifo_1.SetOnReceiveCallback([](){PrintReceivedData();});
+    fifo_1.SetOnReceiveCallback([](){OnReceivedChar_a();});
     fifo_1.StartReceive();
     
     while(1)
