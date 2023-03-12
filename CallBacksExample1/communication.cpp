@@ -39,7 +39,6 @@ namespace fifocomm{
             if(data[0] == 'a')
             {
                 callback_();
-                printf("Event: 'a' received...some action .... \n");
             }                    
         }
     }

@@ -2,9 +2,10 @@
 #include <future>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <functional>
 
-#ifndef _FIFO_COMM_CLASS_
-#define _FIFO_COMM_CLASS_
+#ifndef _FIFO_COMM_CLASS_H_
+#define _FIFO_COMM_CLASS_H_
 
 namespace fifocomm{
 
@@ -30,4 +31,4 @@ class FifoComm{
     
 }; //FifoComm
 } //namespace fifocomm
-#endif //_FIFO_COMM_CLASS_
+#endif //_FIFO_COMM_CLASS_H_
