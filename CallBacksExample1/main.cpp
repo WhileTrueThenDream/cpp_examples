@@ -14,18 +14,18 @@ using namespace fifocomm;
 
 void PrintReceivedData()
 {
-	printf("Event: 'a' received...some action .... \n");
+    printf("Event: 'a' received...some action .... \n");
 }
 
 int main()
 {
-	FifoComm fifo_1(fifo_path);
-	fifo_1.SetOnReceiveCallback([](){PrintReceivedData();});
-	fifo_1.StartReceive();
-	
-	while(1)
-	{
-		sleep(1);
-		printf("main is busy with another stuff \n");
-	}
+    FifoComm fifo_1(fifo_path);
+    fifo_1.SetOnReceiveCallback([](){PrintReceivedData();});
+    fifo_1.StartReceive();
+    
+    while(1)
+    {
+        sleep(1);
+        printf("main is busy with another stuff \n");
+    }
 }
