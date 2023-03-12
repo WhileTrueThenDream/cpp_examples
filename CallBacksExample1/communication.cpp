@@ -11,9 +11,9 @@ namespace fifocomm{
 
     FifoComm::~FifoComm()
     {
+       continue_reading_ = false; //thread must finish so destructor destroys object.   
        close(fd);
        remove(fifo_path_name_);
-       continue_reading_ = false; //thread must finish so destructor destroys object. 
     } 
     
     void FifoComm::SetOnReceiveCallback(std::function<void()> callback)

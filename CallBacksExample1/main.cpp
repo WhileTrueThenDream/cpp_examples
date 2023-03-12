@@ -6,15 +6,21 @@
 // When the fifo reads a char 'a' it will be triggered a callback
 // The receiving methode runs ansyncrhonously and does not block main
 
+// To test this program open terminal:
+// - Write to the fifo: 
+// echo 'a' > /tmp/my_fifo 
+
+
 
 #include "communication.hpp"
 
 const char* fifo_path{"/tmp/my_fifo"};
 using namespace fifocomm;
 
+//this function will be invoked when callback triggered
 void OnReceivedChar_a()
 {
-    printf("Event: 'a' received...some action .... \n");
+    printf("Event: 'a' received...some action ... \n");
 }
 
 int main()
@@ -26,6 +32,6 @@ int main()
     while(1)
     {
         sleep(1);
-        printf("main is busy with another stuff \n");
+        printf("main is busy with another stuff ... \n");
     }
 }
